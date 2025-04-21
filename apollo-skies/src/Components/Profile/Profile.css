@@ -1,0 +1,33 @@
+.profile-container {
+    width: 420px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(30px);
+    color: #fff;
+    border-radius: 15px;
+    padding: 30px 40px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .profile-container h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 200px;
+  }
+  
+  .profile-info {
+    font-size: 16px;
+    text-align: left;
+    margin: 30px;
+    line-height: 2;
+
+  }
+  
+  .profile-info p {
+    margin:10px;
+  }
+  
+
+  
