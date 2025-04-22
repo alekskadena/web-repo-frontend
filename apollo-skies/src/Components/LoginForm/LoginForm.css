@@ -72,6 +72,7 @@
     color: #fff;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .forgot-password a:hover{
@@ -90,6 +91,8 @@
     color: #fff;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease;
+
 
 }
 

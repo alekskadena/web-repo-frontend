@@ -2,10 +2,20 @@ import React from 'react';
 import './LoginForm.css';
 import { FaRegUser} from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
+import { useNavigate, Link } from "react-router-dom";
 
+function LoginForm() {
+  const navigate = useNavigate();
 
+  const handleLogin = (e) => {
+    e.preventDefault();
 
-const LoginForm = () => {
+    // Grupi i backend te shtoje llogjiken ketu, si api, validation, etc.
+
+    // Nese cdo gje eshte successful
+    navigate("/profile");
+  };
+
     return(
         <div className='wrapper'>
             <form action="login.php" method="POST">
@@ -26,7 +36,7 @@ const LoginForm = () => {
             </div>
             <div className='register-link'>
                 <p>Don't have an account? </p>
-                <a href="#">Register now</a>
+                <Link to="/register">Register here</Link>
             </div>
         </div>
     )

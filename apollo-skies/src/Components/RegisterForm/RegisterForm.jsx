@@ -2,13 +2,20 @@ import React from 'react';
 import './RegisterForm.css';
 import { MdDriveFileRenameOutline, MdOutlineMail, MdLockOutline } from "react-icons/md";
 import { FaRegUser} from "react-icons/fa";
+import { useNavigate, Link } from "react-router-dom";
 
+function RegisterForm() {
+  const navigate = useNavigate();
 
+  const handleRegister = (e) => {
+    e.preventDefault();
 
+    // Grupi i backend te shtoje llogjiken ketu, si api, validation, etc.
 
+    // Nese cdo gje eshte successful
+    navigate("/profile");
+  };
 
-
-const RegisterForm = () => {
     return(
         <div className='wrapper'>
             <form action="register.php" method="POST">
@@ -38,7 +45,7 @@ const RegisterForm = () => {
             </form>
             <div className='login-link'>
             <p>Already have an account?</p>
-            <a href="#">Login here</a>
+            <Link to="/login">Login here</Link>
             </div>
         </div>
     )
