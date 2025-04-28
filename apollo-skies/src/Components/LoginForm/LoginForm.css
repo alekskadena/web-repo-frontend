@@ -35,8 +35,8 @@
     padding: 20px 45px 20px 20px;
 }
 
-.input-box input::placeholder{
-    color: #10375c;
+.wrapper .input-box input::placeholder{
+    color: #344250;
 }
 
 .input-box .icon{

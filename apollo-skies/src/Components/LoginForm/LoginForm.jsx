@@ -66,7 +66,7 @@ function LoginForm() {
       </form>
       <div className='forgot-password'>
         <p>Forgot your password? </p>
-        <a href="#">Click here</a>
+        <Link to="/forgotpassword">Click here</Link>
       </div>
       <div className='register-link'>
         <p>Don't have an account? </p>
