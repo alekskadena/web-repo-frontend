@@ -18,23 +18,32 @@ function LoginForm() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('identifier', credentials.identifier);
-    formData.append('password', credentials.password);
+    try {
+      const response = await fetch('http://localhost/web-repo-backend/login.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+      });
 
-    const response = await fetch('http://localhost/web-repo-backend/login.php', {
-      method: 'POST',
-      body: formData
-    });
+      const result = await response.json();
 
-    const resultText = await response.text();
+      if (result.status === 'success') {
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("username", credentials.identifier);
+        
+        if (result.redirect === "admin.jsx") {
+          navigate("/admin"); // i bendirect në admin
+        } else if (result.redirect === "Profile.jsx") {
+          navigate("/profile");  //i ben direct ne users profile 
+        }
+      } else {
+        alert(result.message); 
+      }
 
-    if (resultText.includes("profile.php")) {
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("username", credentials.identifier);
-      navigate("/profile");
-    } else {
-      alert(resultText);
+    } catch (error) {
+      alert("Login failed: " + error.message);
     }
   };
 

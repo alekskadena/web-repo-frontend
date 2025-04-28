@@ -1,0 +1,48 @@
+
+
+/*DISCLAIMER: kjo pjese e frontendit its just a sample for testing, grupi i frontendit do merret me pjesen e stilizimit later*/
+.admin-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f4f4f9;
+    border-radius: 8px;
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .admin-container h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+  }
+  .admin-container p {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+  }
+  
+  .admin-container h4 {
+    font-size: 1.5rem;
+    color: #34495e;
+    margin-top: 20px;
+  }
+  
+  .logout-button {
+    background-color: #e74c3c;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-button:hover {
+    background-color: #c0392b;
+  }
+  .loading {
+    font-size: 1.5rem;
+    color: #7f8c8d;
+    text-align: center;
+  }
+  
