@@ -2,35 +2,46 @@ import React, { useEffect, useState } from 'react';
 import './Profile.css';
 import userImg from '../assets/user.png';
 import logo from '../assets/logo.png';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+
   useEffect(() => {
+    // Fetch data from profile.php
     fetch("http://localhost/web-repo-backend/profile.php", {
-      credentials: "include"
+      credentials: "include" 
     })
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok"); 
+        }
+        return res.json();
+      })
       .then(data => {
-        if (data.error) {
-          console.log(data.error);
+        if (data.status === "error") { 
+          console.log(data.message || "Error: Something went wrong");
+          navigate("/login"); 
         } else {
-          setUser(data);
+          setUser(data); 
         }
       })
-      .catch(err => console.error("Error:", err));
-  }, []);
+      .catch(err => {
+        console.error("Error:", err);
+        navigate("/login");
+      });
+  }, [navigate]); 
 
   const handleLogout = () => {
     fetch("http://localhost/web-repo-backend/logout.php", {
       method: "GET",
       credentials: "include"
     })
-      .then(response => response.json()) 
+      .then(response => response.json())
       .then(data => {
         if (data.status === "success") {
-          navigate("/login"); 
+          navigate("/login"); // ben redirect te login nese logout eshte bere succesfully
         } else {
           console.error("Logout failed");
         }
@@ -40,6 +51,9 @@ function Profile() {
       });
   };
 
+  if (!user) {
+    return <div>Loading...</div>; // Nxjerr nje msg te perdoruesi qe te presi derisa te behet fetch in case do ket vones
+  }
 
   return (
     <div className='profile-container'>
@@ -61,7 +75,7 @@ function Profile() {
           <ul>
             <li><a href="#">Profile Settings</a></li>
             <li><a href="#">My Bookings</a></li>
-            <li><button onClick={handleLogout} className="logout-button">Logout</button></li> {}
+            <li><button onClick={handleLogout} className="logout-button">Logout</button></li>
           </ul>
         </aside>
         <section>
@@ -79,3 +93,4 @@ function Profile() {
 }
 
 export default Profile;
+

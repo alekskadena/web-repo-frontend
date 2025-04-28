@@ -20,22 +20,36 @@ function RegisterForm() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
-    const response = await fetch('http://localhost/web-repo-backend/register.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData)
-    });
-
-    const result = await response.json();
-
-    if (result.message === "Registration successful!") {
-      navigate("/profile");
-    } else {
-      alert(result.message);
+    if (formData.password !== formData.confirm_password) {
+      alert("Passwords do not match!");
+      return;
     }
+
+    try {
+      const response = await fetch('http://localhost/web-repo-backend/register.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      //role_id=2 eshte me adminat dhe role_id=1 eshte per normal users
+      const result = await response.json();
+      if (result.status === "success") {
+        if (result.role === 2) {
+          navigate("/admin"); 
+        } else {
+          navigate("/Profile"); 
+        }
+      } else {
+        alert(result.message); 
+      }
+    } catch (error) {
+      console.error("Full Error Object: ", error);
+      alert("An unexpected error occurred. Please try again later.");
+    }
+    
   };
 
   return (
