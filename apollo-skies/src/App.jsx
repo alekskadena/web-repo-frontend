@@ -6,6 +6,7 @@ import Profile from './Components/Profile/Profile'
 import ForgotPassword from './Components/ForgotPassword/ForgotPassword'
 import PasswordMessage from './Components/PasswordMessage/PasswordMessage'
 import UpdatePassword from './Components/UpdatePassword/UpdatePassword'
+import Admin from './Components/Profile/admin'
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 
@@ -18,6 +19,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/forgotpassword" element={<ForgotPassword />} />
       <Route path="/passwordmessage" element={<PasswordMessage />} />
+      <Route path="/admin" element={<Admin />} />
 
       {}
       <Route path="*" element={<Navigate to="/login" />} />

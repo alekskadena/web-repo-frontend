@@ -1,6 +1,7 @@
+/* 
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Admin.css'; 
+import './admin.css'; 
 
 const Admin = () => {
   const [isAdmin, setIsAdmin] = useState(null);
@@ -57,3 +58,60 @@ const Admin = () => {
 };
 
 export default Admin;
+*/
+
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './admin.css'; 
+
+const Admin = () => {
+  const [isAdmin, setIsAdmin] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch('http://localhost/web-repo-backend/session_check.php', {
+      method: 'GET',
+      credentials: 'include',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === 'success' && data.role === 2) {
+          setIsAdmin(true);
+        } else {
+          setIsAdmin(false);
+          //navigate('/login');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        setIsAdmin(false);
+        navigate('/login');
+      });
+  }, [navigate]);
+
+  const logout = () => {
+    fetch('http://localhost/web-repo-backend/logout.php', {
+      method: 'GET',
+      credentials: 'include',
+    })
+      .then((response) => response.json())
+      .then(() => navigate('/'))
+      .catch((error) => console.error('Error:', error));
+  };
+
+  if (isAdmin === null) {
+    return <div className="loading">Loading... Please wait.</div>;
+  }
+
+  return (
+    <div className="admin-container">
+      <h1>Welcome Admin</h1>
+      <p>You're viewing the admin dashboard.</p>
+      <h4>Hey colleague! Go to work now.</h4>
+      <button className="logout-button" onClick={logout}>Logout</button>
+    </div>
+  );
+};
+
+export default Admin;
+

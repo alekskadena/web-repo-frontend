@@ -11,7 +11,8 @@ function Profile() {
   useEffect(() => {
     // Fetch data from profile.php
     fetch("http://localhost/web-repo-backend/profile.php", {
-      credentials: "include" 
+      method:'GET',
+      credentials: "include" ,
     })
       .then(res => {
         if (!res.ok) {

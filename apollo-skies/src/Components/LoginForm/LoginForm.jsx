@@ -32,16 +32,20 @@ function LoginForm() {
       if (result.status === 'success') {
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("username", credentials.identifier);
-        
-        if (result.redirect === "admin.jsx") {
-          navigate("/admin"); // i bendirect në admin
-        } else if (result.redirect === "Profile.jsx") {
-          navigate("/profile");  //i ben direct ne users profile 
-        }
+
+        // Save role and handle redirection
+        localStorage.setItem("role", result.role);
+
+//        if (result.redirect === "admin.jsx") {
+//          navigate("/admin"); // Redirect to admin dashboard
+//        } else if (result.redirect === "Profile.jsx") {
+//          navigate("/profile");  // Redirect to user profile
+//        }
+        navigate(result.redirect);
+
       } else {
         alert(result.message); 
       }
-
     } catch (error) {
       alert("Login failed: " + error.message);
     }

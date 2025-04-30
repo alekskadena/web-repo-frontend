@@ -1,48 +1,59 @@
-import './ForgotPassword.css'
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 
 
-function ForgotPassword(){
-    function ForgotPassword() {
-        const [email, setEmail] = useState('');
-        const [message, setMessage] = useState('');
-        const navigate = useNavigate();
-    
-        const handleSubmit = async (e) => {
-            e.preventDefault(); 
-            
-            try {
-                const response = await fetch('/api/forgotpassword', {  // Ketu eshte endpointi i backendit
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email }),  // Ketu dergohet emaili si JSON
-                });
-    
-                if (response.ok) {
-                    setMessage('Reset link sent to your email!');
-                    navigate('/passwordmessage');
-                } else {
-                    setMessage('Error sending reset link. Please try again.');
-                }
-            } catch (error) {
-                setMessage('Network error. Please try again later.');
-            };
-        };
-    };
+function ForgotPassword() {
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
-    return(
-        <div className='forgot-password-container'>
-            <h2>Forgot Password</h2>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="email">Confirm email: </label>
-                <input type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='email@domain.com' required/>
-                <button type="submit">Send Reset Link</button>
-            </form>
-            {message && <p>{message}</p>}
-        </div>
-    )
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await fetch('http://localhost:80/web-repo-backend/forgotpassword.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+      const textResponse = await response.text();
+      console.log('Raw Response:', textResponse);  
+      const data = JSON.parse(textResponse);
+      console.log('Parsed Response:', data);  
+
+      if (response.ok) {
+        setMessage(data.message);
+      } else {
+        setMessage(data.message || 'Something went wrong');
+      }
+    } catch (error) {
+      console.error('Error:', error); 
+      setMessage('Error connecting to server');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div>
+      <h2>Forgot Password</h2>
+      <form onSubmit={handleSubmit}>
+        <input 
+          type="email" 
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required 
+        />
+        <button type="submit" disabled={loading}>
+          {loading ? 'Sending...' : 'Send Reset Link'}
+        </button>
+      </form>
+      {message && <p>{message}</p>}
+    </div>
+  );
 }
-export default ForgotPassword
+
+export default ForgotPassword;
