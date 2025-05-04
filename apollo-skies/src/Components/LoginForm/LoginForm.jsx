@@ -19,7 +19,7 @@ function LoginForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost/web-repo-backend/login.php', {
+      const response = await fetch('http://localhost:8080/Apollo-SKIES/web-repo-backend/login.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -28,6 +28,7 @@ function LoginForm() {
       });
 
       const result = await response.json();
+      console.log("ketu")
 
       if (result.status === 'success') {
         localStorage.setItem("isLoggedIn", "true");
@@ -36,11 +37,14 @@ function LoginForm() {
         // Save role and handle redirection
         localStorage.setItem("role", result.role);
 
-//        if (result.redirect === "admin.jsx") {
-//          navigate("/admin"); // Redirect to admin dashboard
-//        } else if (result.redirect === "Profile.jsx") {
-//          navigate("/profile");  // Redirect to user profile
-//        }
+        console.log("mesa-" + result.status)
+        console.log("mesa-" + result.redirect)
+
+       if (result.redirect === "admin.jsx") {
+         navigate("/admin"); // Redirect to admin dashboard
+       } else if (result.redirect === "/Profile") {
+         navigate("/Profile");  // Redirect to user profile
+       }
         navigate(result.redirect);
 
       } else {

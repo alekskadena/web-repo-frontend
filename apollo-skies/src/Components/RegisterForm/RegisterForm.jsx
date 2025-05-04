@@ -26,7 +26,7 @@ function RegisterForm() {
     }
 
     try {
-      const response = await fetch('http://localhost/web-repo-backend/register.php', {
+      const response = await fetch('http://localhost:8080/Apollo-SKIES/web-repo-backend/register.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -34,22 +34,21 @@ function RegisterForm() {
         body: JSON.stringify(formData)
       });
 
-      //role_id=2 eshte me adminat dhe role_id=1 eshte per normal users
       const result = await response.json();
       if (result.status === "success") {
-        if (result.role === 2) {
+        alert("jeni regjistruar me sukses")
+        if (result.role === 2){
           navigate("/admin"); 
         } else {
           navigate("/Profile"); 
         }
       } else {
-        alert(result.message); 
+        alert("Regjistrimi deshtoi. Error: "+result.message); 
       }
     } catch (error) {
-      console.error("Full Error Object: ", error);
-      alert("An unexpected error occurred. Please try again later.");
+      console.error("Error:", error);
+      alert("Something went wrong. Try again later.");
     }
-    
   };
 
   return (

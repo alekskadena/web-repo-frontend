@@ -12,7 +12,7 @@ function UpdatePassword() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Ketu përdoret token-i nga URL query string
+    // Merrni tokenin nga URL query string
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const resetToken = params.get('token');
@@ -25,31 +25,35 @@ function UpdatePassword() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Sigurohuni që password-et përputhen
         if (password !== confirmPassword) {
             setMessage('Passwords do not match.');
             return;
         }
 
-        if (!email || !password || !confirmPassword || !token) {
+        // Kontrolloni nëse të gjitha fushat janë të plota
+        if (!email || !password || !token) {
             setMessage('All fields are required.');
             return;
         }
 
         try {
-            const response = await fetch('http://localhost:80/web-repo-backend/updatepassword.php', {  
+            // Dërgoni kërkesën POST
+            const response = await fetch('http://localhost:8080/Apollo-SKIES/web-repo-backend/updatepassword.php', {  
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password, confirmPassword, token }),  
+                body: JSON.stringify({ email, password, token }),  // Nuk është e nevojshme confirmPassword
             });
 
             const result = await response.json();
 
-
+            // Verifikoni nëse përditësimi ishte i suksesshëm
             if (result.success) {
                 setMessage('Password successfully updated!');
-                navigate('/login'); 
+                navigate('/login');  // Pasi të përditësohet fjalëkalimi, navigoni në login
             } else {
                 setMessage(result.message || 'Failed to update password. Please try again.');
             }

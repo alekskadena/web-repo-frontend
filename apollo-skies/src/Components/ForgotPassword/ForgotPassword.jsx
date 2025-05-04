@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-
 function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -11,17 +10,17 @@ function ForgotPassword() {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:80/web-repo-backend/forgotpassword.php', {
+      // Dërgo email-in për të kërkuar resetimin e fjalëkalimit
+      const response = await fetch('http://localhost:8080/Apollo-SKIES/web-repo-backend/forgotpassword.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email }),
       });
-      const textResponse = await response.text();
-      console.log('Raw Response:', textResponse);  
-      const data = JSON.parse(textResponse);
-      console.log('Parsed Response:', data);  
+
+      const data = await response.json();
+      console.log('Parsed Response:', data);
 
       if (response.ok) {
         setMessage(data.message);
@@ -29,7 +28,7 @@ function ForgotPassword() {
         setMessage(data.message || 'Something went wrong');
       }
     } catch (error) {
-      console.error('Error:', error); 
+      console.error('Error:', error);
       setMessage('Error connecting to server');
     } finally {
       setLoading(false);

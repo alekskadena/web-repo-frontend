@@ -8,9 +8,11 @@ function Profile() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
+  console.log(user)
+
   useEffect(() => {
     // Fetch data from profile.php
-    fetch("http://localhost/web-repo-backend/profile.php", {
+    fetch("http://localhost:8080/Apollo-SKIES/web-repo-backend/profile.php", {
       method:'GET',
       credentials: "include" ,
     })
@@ -34,8 +36,9 @@ function Profile() {
       });
   }, [navigate]); 
 
+  console.log("user - " + user)
   const handleLogout = () => {
-    fetch("http://localhost/web-repo-backend/logout.php", {
+    fetch("http://localhost:8080/Apollo-SKIES/web-repo-backend/logout.php", {
       method: "GET",
       credentials: "include"
     })

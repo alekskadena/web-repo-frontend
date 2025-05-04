@@ -18,6 +18,7 @@ function App() {
       <Route path="/register" element={<RegisterForm />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/forgotpassword" element={<ForgotPassword />} />
+      <Route path="/updatepassword" element={<UpdatePassword />} />
       <Route path="/passwordmessage" element={<PasswordMessage />} />
       <Route path="/admin" element={<Admin />} />
 
