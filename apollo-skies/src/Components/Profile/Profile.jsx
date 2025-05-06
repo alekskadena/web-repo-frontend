@@ -12,7 +12,7 @@ function Profile() {
 
   useEffect(() => {
     // Fetch data from profile.php
-    fetch("http://localhost:8080/Apollo-SKIES/web-repo-backend/profile.php", {
+    fetch("http://localhost/web-repo-backend/profile.php", {
       method:'GET',
       credentials: "include" ,
     })
@@ -38,7 +38,7 @@ function Profile() {
 
   console.log("user - " + user)
   const handleLogout = () => {
-    fetch("http://localhost:8080/Apollo-SKIES/web-repo-backend/logout.php", {
+    fetch("http://localhost/web-repo-backend/logout.php", {
       method: "GET",
       credentials: "include"
     })

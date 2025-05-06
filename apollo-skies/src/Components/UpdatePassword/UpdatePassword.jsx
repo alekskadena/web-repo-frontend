@@ -40,7 +40,7 @@ function UpdatePassword() {
 
         try {
             // Dërgoni kërkesën POST
-            const response = await fetch('http://localhost:8080/Apollo-SKIES/web-repo-backend/updatepassword.php', {  
+            const response = await fetch('http://localhost/web-repo-backend/updatepassword.php', {  
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

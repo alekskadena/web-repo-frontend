@@ -11,7 +11,7 @@ function ForgotPassword() {
 
     try {
       // Dërgo email-in për të kërkuar resetimin e fjalëkalimit
-      const response = await fetch('http://localhost:8080/Apollo-SKIES/web-repo-backend/forgotpassword.php', {
+      const response = await fetch('http://localhost/web-repo-backend/forgotpassword.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

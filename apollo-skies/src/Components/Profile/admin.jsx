@@ -69,7 +69,7 @@ const Admin = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:8080/Apollo-SKIES/web-repo-backend/session_check.php', {
+    fetch('http://localhost/web-repo-backend/session_check.php', {
       method: 'GET',
       credentials: 'include',
     })

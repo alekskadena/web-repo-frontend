@@ -7,6 +7,8 @@ import ForgotPassword from './Components/ForgotPassword/ForgotPassword'
 import PasswordMessage from './Components/PasswordMessage/PasswordMessage'
 import UpdatePassword from './Components/UpdatePassword/UpdatePassword'
 import Admin from './Components/Profile/admin'
+import MainPageForm from './Components/Main Page/MainPageForm'
+import Booking from './Components/Booking/Booking'
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 
@@ -21,9 +23,11 @@ function App() {
       <Route path="/updatepassword" element={<UpdatePassword />} />
       <Route path="/passwordmessage" element={<PasswordMessage />} />
       <Route path="/admin" element={<Admin />} />
+      <Route path="/mainpage" element={<MainPageForm />} />
+      <Route path="/booking" element={<Booking />} />
 
       {}
-      <Route path="*" element={<Navigate to="/login" />} />
+      <Route path="*" element={<Navigate to="/mainpage" />} />
     </Routes>
   </Router>
   

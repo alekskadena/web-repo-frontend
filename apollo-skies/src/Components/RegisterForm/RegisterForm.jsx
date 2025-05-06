@@ -26,7 +26,7 @@ function RegisterForm() {
     }
 
     try {
-      const response = await fetch('http://localhost:8080/Apollo-SKIES/web-repo-backend/register.php', {
+      const response = await fetch('http://localhost/web-repo-backend/register.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
