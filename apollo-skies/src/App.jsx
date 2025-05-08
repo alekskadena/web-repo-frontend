@@ -9,6 +9,7 @@ import UpdatePassword from './Components/UpdatePassword/UpdatePassword'
 import Admin from './Components/Profile/admin'
 import MainPageForm from './Components/Main Page/MainPageForm'
 import Booking from './Components/Booking/Booking'
+import Home from './Components/Home/Home'
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 
@@ -25,9 +26,10 @@ function App() {
       <Route path="/admin" element={<Admin />} />
       <Route path="/mainpage" element={<MainPageForm />} />
       <Route path="/booking" element={<Booking />} />
+      <Route path="/home" element={<Home />} />
 
       {}
-      <Route path="*" element={<Navigate to="/mainpage" />} />
+      <Route path="*" element={<Navigate to="/home" />} />
     </Routes>
   </Router>
   

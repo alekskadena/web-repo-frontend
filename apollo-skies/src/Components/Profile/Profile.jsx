@@ -67,10 +67,10 @@ function Profile() {
           <h3 className="headers">Apollo Skies</h3>
         </div>
         <ul>
-          <li><a href="#">HOME</a></li>
+          <li><Link to="/home">HOME</Link></li>
           <li><a href="#">SEARCH</a></li>
           <li><a href="#">ABOUT US</a></li>
-          <li><a href="#">PROFILE</a></li>
+          <li><Link to ="/profile">PROFILE</Link></li>
         </ul>
       </nav>
       <main>
