@@ -158,24 +158,23 @@ const MainPageForm = () => {
         </div>
 
         <div className="trip-type">
-          <label>
-            <input
-              type="radio"
-              value="One Way"
-              checked={tripType === "One Way"}
-              onChange={() => setTripType("One Way")}
-            />
-            One Way
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="Return"
-              checked={tripType === "Return"}
-              onChange={() => setTripType("Return")}
-            />
-            Return
-          </label>
+          <input
+            type="radio"
+            id="one-way"
+            value="One Way"
+            checked={tripType === "One Way"}
+            onChange={() => setTripType("One Way")}
+          />
+          <label htmlFor="one-way">One Way</label>
+
+          <input
+            type="radio"
+            id="return"
+            value="Return"
+            checked={tripType === "Return"}
+            onChange={() => setTripType("Return")}
+          />
+          <label htmlFor="return">Return</label>
         </div>
 
         <div className="date-fields">
