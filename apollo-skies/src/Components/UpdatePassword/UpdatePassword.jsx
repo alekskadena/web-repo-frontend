@@ -11,8 +11,6 @@ function UpdatePassword() {
 
     const navigate = useNavigate();
     const location = useLocation();
-
-    // Merrni tokenin nga URL query string
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const resetToken = params.get('token');
@@ -25,14 +23,10 @@ function UpdatePassword() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Sigurohuni që password-et përputhen
         if (password !== confirmPassword) {
             setMessage('Passwords do not match.');
             return;
         }
-
-        // Kontrolloni nëse të gjitha fushat janë të plota
         if (!email || !password || !token) {
             setMessage('All fields are required.');
             return;
@@ -45,15 +39,13 @@ function UpdatePassword() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password, token }),  // Nuk është e nevojshme confirmPassword
+                body: JSON.stringify({ email, password, token }), 
             });
 
             const result = await response.json();
-
-            // Verifikoni nëse përditësimi ishte i suksesshëm
             if (result.success) {
                 setMessage('Password successfully updated!');
-                navigate('/login');  // Pasi të përditësohet fjalëkalimi, navigoni në login
+                navigate('/login');  
             } else {
                 setMessage(result.message || 'Failed to update password. Please try again.');
             }

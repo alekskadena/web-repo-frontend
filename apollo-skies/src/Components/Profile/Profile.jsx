@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Profile.css';
 import userImg from '../assets/user.png';
 import logo from '../assets/logo.png';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from "react-router-dom";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -67,7 +67,7 @@ function Profile() {
           <h3 className="headers">Apollo Skies</h3>
         </div>
         <ul>
-          <li><Link to="/home">HOME</Link></li>
+          <li><Link to ="/home">HOME</Link></li>
           <li><a href="#">SEARCH</a></li>
           <li><a href="#">ABOUT US</a></li>
           <li><Link to ="/profile">PROFILE</Link></li>

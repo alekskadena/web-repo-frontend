@@ -12,6 +12,8 @@ import { useNavigate, Link } from "react-router-dom";
 
 
 
+
+
 const Home = () => {
     return(
         <div className='home-wrapper'>
@@ -24,9 +26,9 @@ const Home = () => {
                 </div>
                 <ul>
                     <li><Link to="/home">HOME</Link></li>
-                    <li><a href="#">SEARCH</a></li>
+                    <li><Link to ="/mainpage">SEARCH</Link></li>
                     <li><a href="#">ABOUT US</a></li>
-                    <li><Link to ="/profile">PROFILE</Link></li>
+                    <li><Link to ="/login">PROFILE</Link></li>
                 </ul>
             </nav>
             </header>
@@ -34,8 +36,10 @@ const Home = () => {
             <main>
             <div className='slogan-section'>
                 <h1>FLY WITH THE GODS</h1>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur nihil accusamus hic a similique aperiam sed officia, obcaecati iusto maiores nam et natus tenetur. Voluptatum quis quo quaerat saepe accusantium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum maxime quasi nihil iste ab odio voluptas nobis animi modi officia! Sunt consectetur enim voluptatibus voluptates, voluptatem amet a mollitia perspiciatis.</p>
-                <button>SEARCH FLIGHTS</button>
+                <p>Apollo-Skies is a dynamic and customer-focused airline that offers affordable and reliable air travel services to a wide range of destinations. With a commitment to comfort, safety, and on-time performance, Apollo-Skies aims to make flying accessible and enjoyable for all passengers. Whether you're traveling for business or leisure, our fleet of modern aircraft and exceptional service ensure a seamless and pleasant journey from start to finish. Fly with Apollo-Skies and experience the sky like never before.</p>
+ <button>
+  <Link to="/mainpage">SEARCH FLIGHTS</Link>
+</button>
             </div>
             <div className='cards-section'>
                 <div className='cards-section2'>

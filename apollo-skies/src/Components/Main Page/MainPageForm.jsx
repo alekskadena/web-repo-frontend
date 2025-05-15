@@ -222,8 +222,8 @@ const MainPageForm = () => {
                 <li key={i}>
                   {f.from_location} → {f.to_location} on <b>{f.flight_date || "N/A"}</b> at {f.departure}
                   <br />
-                  {/* Link për të kaluar te Booking.jsx */}
-                  <a href={`/booking/${f.id}`} target="_blank" rel="noopener noreferrer">Book now!</a>
+                  <Link to={`/booking/${f.id}`} target="_blank" rel="noopener noreferrer">Book now!</Link>
+
                 </li>
               ))}
             </ul>
