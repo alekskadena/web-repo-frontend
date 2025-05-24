@@ -125,6 +125,14 @@ export default function Dashboard() {
   const [users, setUsers] = useState([]);
   const [formData, setFormData] = useState({ username: '', email: '', role: '1' });
   const [editId, setEditId] = useState(null);
+  const navigate = useNavigate();
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const role = localStorage.getItem("role");
+  const isAdmin= role=== "2";
+  if (isLoggedIn || !isAdmin)
+
+
+
 
   useEffect(() => {
     fetchUsers();
@@ -233,9 +241,28 @@ export default function Dashboard() {
             </td>
           </tr>
         ))}
+        
       </tbody>
     </table>
+    <div style={{ marginTop: '20px' }}>
+  <button
+    onClick={() => {
+      fetch('http://localhost/web-repo-backend/logout.php')
+        .then(() => {
+          navigate('/login');
+        })
+        .catch(err => {
+          alert('Logout failed: ' + err);
+        });
+    }}
+    className="bg-gray-500"
+  >
+    Logout
+  </button>
+</div>
+
   </div>
 </div>
+
   );
 }

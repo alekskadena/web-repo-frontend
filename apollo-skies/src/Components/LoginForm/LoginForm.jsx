@@ -24,6 +24,7 @@ function LoginForm() {
         headers: {
           'Content-Type': 'application/json'
         },
+         credentials: 'include',
         body: JSON.stringify(credentials)
       });
 
@@ -33,17 +34,15 @@ function LoginForm() {
       if (result.status === 'success') {
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("username", credentials.identifier);
-
-        // Save role and handle redirection
         localStorage.setItem("role", result.role);
 
         console.log("mesa-" + result.status)
         console.log("mesa-" + result.redirect)
 
        if (result.redirect === "admin.jsx") {
-         navigate("/admin"); // Redirect to admin dashboard
+         navigate("/admin"); // Redirect te admin dashboard
        } else if (result.redirect === "/Profile") {
-         navigate("/Profile");  // Redirect to user profile
+         navigate("/Profile");  // Redirect te user profile
        }
         navigate(result.redirect);
 

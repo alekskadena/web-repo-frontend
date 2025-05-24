@@ -27,7 +27,7 @@ const Home = () => {
                 <ul>
                     <li><Link to="/home">HOME</Link></li>
                     <li><Link to ="/mainpage">SEARCH</Link></li>
-                    <li><a href="#">ABOUT US</a></li>
+                    <li><Link to ="/aboutus">ABOUT US</Link></li>
                     <li><Link to ="/login">PROFILE</Link></li>
                 </ul>
             </nav>
@@ -48,17 +48,18 @@ const Home = () => {
                     <div className='cards-row'>
                     <div className='card'>
                         <img src ={Rome} alt="Destination Photo" />
-                        <h3>Rome</h3>
+                      <Link to="/mainpage">  <h3>Rome</h3> </Link>
                         <p>Prices starting from: €25.99</p>
+                        
                     </div>
                     <div className='card'>
                         <img src ={Paris} alt="Destination Photo" />
-                        <h3>Paris</h3>
+                        <Link to="/mainpage">  <h3>Paris</h3> </Link>
                         <p>Prices starting from: €29.99</p>
                     </div>
                     <div className='card'>
                         <img src ={Athens} alt="Destination Photo" />
-                        <h3>Athens</h3>
+                        <Link to="/mainpage">  <h3>Athens</h3> </Link>
                         <p>Prices starting from: €14.99</p>
                     </div>
                     </div>
@@ -70,17 +71,17 @@ const Home = () => {
                     <div className='cards-row'>
                     <div className='card'>
                         <img src ={Istanbul} alt="Destination Photo" />
-                        <h3>Istanbul</h3>
+                   <h3>Istanbul</h3> 
                         <p>Prices starting from: €54.99</p>
                     </div>
                     <div className='card'>
                         <img src ={Abu_Dhabi} alt="Destination Photo" />
-                        <h3>Abu Dhabi</h3>
+                       <h3>Abu Dhabi</h3> 
                         <p>Prices starting from: €119.99</p>
                     </div>
                     <div className='card'>
                         <img src ={Glasgow} alt="Destination Photo" />
-                        <h3>Glasgow</h3>
+                      <h3>Glasgow</h3> 
                         <p>Prices starting from: €39.99</p>
                     </div>
                     </div>

@@ -45,6 +45,9 @@ function Profile() {
       .then(response => response.json())
       .then(data => {
         if (data.status === "success") {
+             localStorage.removeItem("isLoggedIn");
+          localStorage.removeItem("username");
+          localStorage.removeItem("role");
           navigate("/login"); // ben redirect te login nese logout eshte bere succesfully
         } else {
           console.error("Logout failed");
@@ -81,18 +84,20 @@ function Profile() {
             <li><a href="#">My Bookings</a></li>
             <li><button onClick={handleLogout} className="logout-button">Logout</button></li>
           </ul>
-        </aside>
+       
         <section>
+          <div>
           <h1>About</h1>
           <ul>
             <li>Full Name: {user?.fullname}</li>
             <li>Username: {user?.username}</li>
             <li>Email Address: {user?.email}</li>
             <li>Member Since: {user?.created_at?.slice(0, 10)}</li>
-          </ul>
+          </ul> </div>
         </section>
+       </aside>
       </main>
-    </div>
+    </div> 
   );
 }
 
