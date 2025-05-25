@@ -1,0 +1,82 @@
+.wrapper {
+  background: transparent;
+  padding: 30px 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  backdrop-filter: blur(30px);
+  color: #fff;
+  border-radius: 15px;
+}
+
+/* Headings */
+h2 {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+}
+
+/* Label Styling */
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #10375c;
+}
+
+/* Input Styling */
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    font-family: Outfit, sans-serif;
+    color: #fff;
+    padding: 15px 30px 15px 15px;
+  transition: border-color 0.3s ease;
+}
+
+
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+  border-color: #10375c; /* PayPal blue for consistency */
+  outline: none;
+}
+
+input::placeholder{
+    color: #35424d;
+}
+
+/* Readonly Amount Field */
+input[readonly] {
+  background-color: #10375C;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 3px 5px;
+  font-family: outfit, sans-serif;
+  text-align: center;
+}
+
+/* Message Styling */
+p {
+  text-align: center;
+  padding: 10px;
+  color: #10375C;
+  font-weight: bold;
+}
+
+/* PayPal Buttons Container */
+.paypal-buttons {
+  background: transparent;
+  border-radius: 15px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 500px) {
+  div {
+    padding: 15px;
+  }
+}

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
+import './Payment.css'
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 function Payment() {
@@ -32,7 +34,7 @@ function Payment() {
 
   return (
     <PayPalScriptProvider options={{ "client-id": "ASyxi2qH22L96T49AwpNWZ45PvUlwp_U9W_Av2tzpOwjkneu8Bk6r9EAEv5HhmICNLnP88Dh7rPB77wB" }}>
-      <div style={{ maxWidth: "400px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "400px", margin: "0 auto"}} className="wrapper">
         <h2>Payment Form</h2>
         <div>
           <label>Name:</label>

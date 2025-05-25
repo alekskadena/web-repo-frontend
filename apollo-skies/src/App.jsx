@@ -12,6 +12,7 @@ import MainPageForm from './Components/Main Page/MainPageForm'
 import Booking from './Components/Booking/Booking'
 import Home from './Components/Home/Home'
 import AboutUs from './Components/AboutUs/AboutUs'
+import Payment from './Components/Payment/Payment'
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 
@@ -30,7 +31,8 @@ function App() {
       <Route path="/booking" element={<Booking />} />
       <Route path="/home" element={<Home />} />
       <Route path="/dashboard" element={<Dashboard />} />
-       <Route path="/aboutus" element={<AboutUs />} />
+      <Route path="/aboutus" element={<AboutUs />} />
+      <Route path="/payment" element={<Payment />} />
 
       {}
       <Route path="*" element={<Navigate to="/home" />} />
