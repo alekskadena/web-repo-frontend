@@ -87,7 +87,7 @@ export default MainPageForm;
 */
 
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import "./MainPage.css";
 
 const MainPageForm = () => {
@@ -99,8 +99,11 @@ const MainPageForm = () => {
   const [returnDate, setReturnDate] = useState("");
   const [passengers, setPassengers] = useState(1);
   const [flights, setFlights] = useState([]);
+  const [searched, setSearched] = useState(false);
 
-//marrim locations nga backend (dbapollo)
+  const navigate = useNavigate();
+
+  // Fetch locations on component mount
   useEffect(() => {
     fetch("http://localhost/web-repo-backend/locations.php")
       .then((res) => res.json())
@@ -108,8 +111,24 @@ const MainPageForm = () => {
       .catch((err) => console.error("Error fetching locations:", err));
   }, []);
 
-  
   const handleSearch = () => {
+    if (!departure || !arrival) {
+      alert("Please select both departure and arrival locations.");
+      return;
+    }
+    if (!departureDate) {
+      alert("Please select departure date.");
+      return;
+    }
+    if (tripType === "Return" && !returnDate) {
+      alert("Please select return date.");
+      return;
+    }
+    if (passengers < 1) {
+      alert("Please select at least 1 passenger.");
+      return;
+    }
+
     fetch("http://localhost/web-repo-backend/SearchFlights.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -122,37 +141,52 @@ const MainPageForm = () => {
         passengers,
       }),
     })
-      .then((res) => res.text())
+      .then((res) => res.json())
       .then((data) => {
-        console.log("Server response:", data);
-        try {
-          const jsonData = JSON.parse(data);
-          console.log("Flight results:", jsonData);
-          setFlights(jsonData);
-        } catch (err) {
-          console.error("Invalid JSON:", err);
+        console.log("Flight results full data:", JSON.stringify(data, null, 2));
+        // Ensure data is always an array
+        if (Array.isArray(data)) {
+          setFlights(data);
+        } else if (data) {
+          // If data is a single flight object, wrap in array
+          setFlights([data]);
+        } else {
+          setFlights([]);
         }
+        setSearched(true);
       })
-      .catch((err) => console.error("Search error:", err));
+      .catch((err) => {
+        console.error("Search error:", err);
+        setFlights([]);
+        setSearched(true);
+      });
+  };
+
+  const handleBookNow = (flightId) => {
+    navigate(`/booking/${flightId}`);
   };
 
   return (
- 
     <div className="main-container">
       <div className="search-box">
         <h2>Search for Flights</h2>
+
         <div className="inputs-row">
           <select value={departure} onChange={(e) => setDeparture(e.target.value)}>
             <option value="">Departure</option>
             {locations.map((loc, idx) => (
-              <option key={idx} value={loc}>{loc}</option>
+              <option key={idx} value={loc}>
+                {loc}
+              </option>
             ))}
           </select>
 
           <select value={arrival} onChange={(e) => setArrival(e.target.value)}>
             <option value="">Arrival</option>
             {locations.map((loc, idx) => (
-              <option key={idx} value={loc}>{loc}</option>
+              <option key={idx} value={loc}>
+                {loc}
+              </option>
             ))}
           </select>
         </div>
@@ -206,28 +240,30 @@ const MainPageForm = () => {
               type="number"
               min="1"
               value={passengers}
-              onChange={(e) => setPassengers(e.target.value)}
+              onChange={(e) => setPassengers(parseInt(e.target.value) || 1)}
             />
           </label>
         </div>
 
         <button onClick={handleSearch}>Search Flights</button>
 
-        {/* Rezultatet e fluturimeve */}
-        {flights.length > 0 && (
-          <div className="results">
-            <h3>Available Flights:</h3>
-            <ul>
-              {flights.map((f, i) => (
-                <li key={i}>
-                  {f.from_location} → {f.to_location} on <b>{f.flight_date || "N/A"}</b> at {f.departure}
-                  <br />
-                  <Link to={`/booking/${f.id}`} target="_blank" rel="noopener noreferrer">Book now!</Link>
-
-                </li>
-              ))}
-            </ul>
-          </div>
+        {searched && (
+          flights.length > 0 ? (
+            <div className="results">
+              <h3>Available Flights:</h3>
+              <ul>
+                {flights.map((f, index) => (
+                  <li key={f.id || index}>
+                    {f.from_location} → {f.to_location} on <b>{f.departure}</b>
+                    <br />
+                    <button onClick={() => handleBookNow(f.id)}>Book now!</button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <p>No flights found.</p>
+          )
         )}
       </div>
     </div>

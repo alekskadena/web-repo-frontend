@@ -24,31 +24,34 @@ function LoginForm() {
         headers: {
           'Content-Type': 'application/json'
         },
-         credentials: 'include',
+        credentials: 'include',
         body: JSON.stringify(credentials)
       });
 
       const result = await response.json();
-      console.log("ketu")
 
       if (result.status === 'success') {
+        // ✅ Ruaj të dhënat në localStorage
         localStorage.setItem("isLoggedIn", "true");
+        //localStorage.setItem("username", result.username); // nga backend
         localStorage.setItem("username", credentials.identifier);
         localStorage.setItem("role", result.role);
 
         console.log("mesa-" + result.status)
         console.log("mesa-" + result.redirect)
+      
 
-       if (result.redirect === "admin.jsx") {
-         navigate("/admin"); // Redirect te admin dashboard
-       } else if (result.redirect === "/Profile") {
-         navigate("/Profile");  // Redirect te user profile
-       }
-        navigate(result.redirect);
-
-      } else {
-        alert(result.message); 
-      }
+        // ✅ Redirect sipas rolit ose URL-së
+        if (result.redirect === "admin.jsx") {
+          navigate("/admin");
+        } else if (result.redirect === "/profile") {
+          navigate("/profile");
+          window.location.reload();
+        } 
+          navigate(result.redirect);
+        }else{
+          alert(result.message);
+        }
     } catch (error) {
       alert("Login failed: " + error.message);
     }
@@ -80,6 +83,7 @@ function LoginForm() {
         </div>
         <button type="submit">Login</button>
       </form>
+
       <div className='forgot-password'>
         <p>Forgot your password? </p>
         <Link to="/forgotpassword">Click here</Link>

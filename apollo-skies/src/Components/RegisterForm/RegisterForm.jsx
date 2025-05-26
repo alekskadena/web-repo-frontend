@@ -36,11 +36,11 @@ function RegisterForm() {
 
       const result = await response.json();
       if (result.status === "success") {
-        alert("jeni regjistruar me sukses")
+        alert("Sign up successful! Redirecting to login...");
         if (result.role === 2){
           navigate("/admin"); 
         } else {
-          navigate("/Profile"); 
+          navigate("/login"); 
         }
       } else {
         alert("Regjistrimi deshtoi. Error: "+result.message); 

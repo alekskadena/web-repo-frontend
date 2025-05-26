@@ -7,14 +7,14 @@
   border-radius: 15px;
 }
 
-/* Headings */
+
 h2 {
   text-align: center;
   color: white;
   margin-bottom: 20px;
 }
 
-/* Label Styling */
+
 label {
   display: block;
   font-weight: bold;
@@ -22,7 +22,6 @@ label {
   color: #10375c;
 }
 
-/* Input Styling */
 input[type="text"],
 input[type="email"] {
     width: 100%;
@@ -42,7 +41,7 @@ input[type="email"] {
 
 input[type="text"]:focus,
 input[type="email"]:focus {
-  border-color: #10375c; /* PayPal blue for consistency */
+  border-color: #10375c;
   outline: none;
 }
 
@@ -50,7 +49,6 @@ input::placeholder{
     color: #35424d;
 }
 
-/* Readonly Amount Field */
 input[readonly] {
   background-color: #10375C;
   font-weight: bold;
@@ -60,7 +58,7 @@ input[readonly] {
   text-align: center;
 }
 
-/* Message Styling */
+
 p {
   text-align: center;
   padding: 10px;
@@ -68,13 +66,12 @@ p {
   font-weight: bold;
 }
 
-/* PayPal Buttons Container */
 .paypal-buttons {
   background: transparent;
   border-radius: 15px;
 }
 
-/* Mobile Responsiveness */
+
 @media (max-width: 500px) {
   div {
     padding: 15px;

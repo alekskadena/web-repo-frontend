@@ -1,253 +1,117 @@
-/*
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"; // Shto këtë
-
-const Booking = () => {
-  const { id } = useParams(); // Merr ID nga URL
-  const [bookingDetails, setBookingDetails] = useState([]);
-
-  useEffect(() => {
-    fetch(`http://localhost/web-repo-backend/booking.php?flight_id=${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Booking details:", data);
-        setBookingDetails(data);
-      })
-      .catch((err) => console.error("Error fetching booking details:", err));
-  }, [id]);
-
-  return (
-    <div>
-      <h2>Booking Details</h2>
-      {bookingDetails.length > 0 ? (
-        <div>
-          <h3>Flight Information:</h3>
-          <ul>
-            {bookingDetails.map((booking) => (
-              <li key={booking.id}>
-                <p>Flight Code: {booking.flight_code}</p>
-                <p>From: {booking.from_location}</p>
-                <p>To: {booking.to_location}</p>
-                <p>Departure: {booking.departure}</p>
-                <p>Arrival: {booking.arrival}</p>
-                <p>User: {booking.user_name}</p>
-                <p>Booking Date: {booking.booking_date}</p>
-                <p>Status: {booking.status}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <p>No booking found for this flight.</p>
-      )}
-    </div>
-  );
-};
-
-
-export default Booking;
-
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { MapContainer, TileLayer, Marker, Polyline, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 
 function Booking() {
-  const { id } = useParams(); 
+  const { flightId } = useParams();
   const navigate = useNavigate();
+
   const [flight, setFlight] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    fetch('http://localhost/web-repo-backend/check_login.php', {
-      credentials: 'include'
-    })
-      .then(res => res.json())
-      .then(data => {
-        setIsLoggedIn(data.loggedIn);
-        if (!data.loggedIn) {
-          alert("Please log in to continue booking.");
-          navigate('/login'); //nqs useri sesht i loguar e con n login
-        }
-      });
-
-    //ktu marrim detajet nga fluturimi
-    fetch(`http://localhost/web-repo-backend/get_flight_details.php?id=${id}`)
-      .then(res => res.json())
-      .then(data => setFlight(data))
-      .catch(err => console.error('Error:', err));
-  }, [id, navigate]);
-
-  if (!flight) return <p>Loading flight details...</p>;
-
-  return (
-    <div>
-      <h2>Booking for Flight #{flight.flight_code}</h2>
-      <p>From: {flight.from_location}</p>
-      <p>To: {flight.to_location}</p>
-      <p>Departure Time: {flight.departure}</p>
-      <p>Arrival Time: {flight.arrival}</p>
-
-      {isLoggedIn && (
-        <div>
-          <h3>Payment</h3>
-          <button>Proceed to Payment</button>
-        </div>
-      )}
-    </div>
-  );
-}
-
-export default Booking;
-*/
-
-
-/*
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"; // Shto këtë
-
-const Booking = () => {
-  const { id } = useParams(); // Merr ID nga URL
-  const [bookingDetails, setBookingDetails] = useState([]);
-
-  useEffect(() => {
-    fetch(`http://localhost/web-repo-backend/booking.php?flight_id=${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Booking details:", data);
-        setBookingDetails(data);
-      })
-      .catch((err) => console.error("Error fetching booking details:", err));
-  }, [id]);
-
-  return (
-    <div>
-      <h2>Booking Details</h2>
-      {bookingDetails.length > 0 ? (
-        <div>
-          <h3>Flight Information:</h3>
-          <ul>
-            {bookingDetails.map((booking) => (
-              <li key={booking.id}>
-                <p>Flight Code: {booking.flight_code}</p>
-                <p>From: {booking.from_location}</p>
-                <p>To: {booking.to_location}</p>
-                <p>Departure: {booking.departure}</p>
-                <p>Arrival: {booking.arrival}</p>
-                <p>User: {booking.user_name}</p>
-                <p>Booking Date: {booking.booking_date}</p>
-                <p>Status: {booking.status}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <p>No booking found for this flight.</p>
-      )}
-    </div>
-  );
-};
-
-
-export default Booking;*/
-
-/*import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-
-function Booking() {
-  const { id } = useParams(); 
-  const navigate = useNavigate();
-  const [flight, setFlight] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    fetch('http://localhost:8080/Apollo-SKIES/web-repo-backend/check_login.php', {
-      credentials: 'include'
-    })
-      .then(res => res.json())
-      .then(data => {
-        setIsLoggedIn(data.loggedIn);
-        if (!data.loggedIn) {
-          alert("Please log in to continue booking.");
-          navigate('/login'); //nqs useri sesht i loguar e con n login
-        }
-      });
-
-    //ktu marrim detajet nga fluturimi
-    fetch(`http://localhost:8080/Apollo-SKIES/web-repo-backend/get_flight_details.php?id=${id}`)
-      .then(res => res.json())
-      .then(data => setFlight(data))
-      .catch(err => console.error('Error:', err));
-  }, [id, navigate]);
-
-  if (!flight) return <p>Loading flight details...</p>;
-
-  return (
-    <div>
-      <h2>Booking for Flight #{flight.flight_code}</h2>
-      <p>From: {flight.from_location}</p>
-      <p>To: {flight.to_location}</p>
-      <p>Date: {flight.date}</p>
-      <p>Departure Time: {flight.departure}</p>
-      <p>Arrival Time: {flight.arrival}</p>
-
-      {isLoggedIn && (
-        <div>
-          <h3>Payment</h3>
-          <button>Proceed to Payment</button>
-        </div>
-      )}
-    </div>
-  );
-}
-*/
-
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-
-function Booking() {
-  const { id } = useParams();
-  const navigate = useNavigate();
-
+  const [mapData, setMapData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [flight, setFlight] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Merr detajet e fluturimit direkt, pa kontroll login
-    fetch(`http://localhost/web-repo-backend/get_flights_details.php?id=${id}`, {
+    if (!flightId) {
+      setError("No flight ID provided.");
+      setLoading(false);
+      return;
+    }
+
+    // Fetch flight details
+    fetch(`http://localhost/web-repo-backend/get_flights_details.php?id=${flightId}`, {
       credentials: 'include',
     })
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error(`Server responded with status ${res.status}`);
+        return res.json();
+      })
       .then(flightData => {
-        if (flightData.error) {
-          setError(flightData.error);
-        } else {
-          setFlight(flightData);
-        }
+        if (flightData.error) throw new Error(flightData.error);
+        setFlight(flightData);
+
+        return fetch(`http://localhost/web-repo-backend/get_flight_map.php?flight_id=${flightId}`, {
+          credentials: 'include',
+        });
+      })
+      .then(res => {
+        if (!res.ok) throw new Error(`Map fetch failed with status ${res.status}`);
+        return res.json();
+      })
+      .then(mapInfo => {
+        if (mapInfo.error) throw new Error(mapInfo.error);
+        setMapData(mapInfo);
         setLoading(false);
       })
-      .catch(() => {
-        setError('Failed to fetch flight details');
+      .catch(err => {
+        setError(err.message);
         setLoading(false);
       });
-  }, [id]);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  }, [flightId]);
 
   const handlePayment = () => {
     navigate('/payment', { state: { flight } });
   };
 
-  return (
-    <div>
-      <h2>Booking for Flight #{flight.flight_code}</h2>
-      <p>From: {flight.from_location}</p>
-      <p>To: {flight.to_location}</p>
-      <p>Date: {flight.date}</p>
-      <p>Departure Time: {flight.departure}</p>
-      <p>Arrival Time: {flight.arrival}</p>
+  if (loading) return <p>Loading flight details...</p>;
+  if (error) return <p style={{ color: 'red' }}>Error: {error}</p>;
+  if (!flight) return <p>No flight data found.</p>;
 
-      <button onClick={handlePayment}>Proceed to Payment</button>
+  return (
+    <div style={{ padding: "2rem", fontFamily: "Arial, sans-serif" }}>
+      <h2>Booking for Flight #{flight.flight_code}</h2>
+      <p><strong>From:</strong> {flight.from_location}</p>
+      <p><strong>To:</strong> {flight.to_location}</p>
+      <p><strong>Date:</strong> {flight.date}</p>
+      <p><strong>Departure Time:</strong> {flight.departure}</p>
+      <p><strong>Arrival Time:</strong> {flight.arrival}</p>
+
+      <button
+        onClick={handlePayment}
+        style={{
+          marginTop: "20px",
+          padding: "10px 20px",
+          backgroundColor: "#007bff",
+          color: "white",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+        }}
+      >
+        Proceed to Payment
+      </button>
+
+      {mapData && (
+        <div style={{ height: '400px', marginTop: '20px' }}>
+          <MapContainer
+            center={[
+              parseFloat(mapData.from_lat),
+              parseFloat(mapData.from_lng),
+            ]}
+            zoom={5}
+            style={{ height: '100%', width: '100%' }}
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution="&copy; OpenStreetMap contributors"
+            />
+            <Marker position={[mapData.from_lat, mapData.from_lng]}>
+              <Popup>From: {flight.from_location}</Popup>
+            </Marker>
+            <Marker position={[mapData.to_lat, mapData.to_lng]}>
+              <Popup>To: {flight.to_location}</Popup>
+            </Marker>
+            <Polyline
+              positions={[
+                [mapData.from_lat, mapData.from_lng],
+                [mapData.to_lat, mapData.to_lng],
+              ]}
+              color="blue"
+            />
+          </MapContainer>
+        </div>
+      )}
     </div>
   );
 }

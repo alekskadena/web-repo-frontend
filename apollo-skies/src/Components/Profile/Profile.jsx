@@ -36,7 +36,9 @@ function Profile() {
       });
   }, [navigate]); 
 
-  console.log("user - " + user)
+//console.log("Fetched user data:", JSON.stringify(user, null, 2));
+console.log("user -" + user)
+
   const handleLogout = () => {
     fetch("http://localhost/web-repo-backend/logout.php", {
       method: "GET",
@@ -61,8 +63,11 @@ function Profile() {
   if (!user) {
     return <div>Loading...</div>; // Nxjerr nje msg te perdoruesi qe te presi derisa te behet fetch in case do ket vones
   }
+  //const username = localStorage.getItem("username");
+
 
   return (
+ 
     <div className='profile-container'>
       <nav id="navbar">
         <div id="navname">
@@ -71,8 +76,8 @@ function Profile() {
         </div>
         <ul>
           <li><Link to ="/home">HOME</Link></li>
-          <li><a href="#">SEARCH</a></li>
-          <li><a href="#">ABOUT US</a></li>
+          <li><Link to = "/mainpage">SEARCH</Link></li>
+          <li><Link to ="/aboutus">ABOUT US</Link></li>
           <li><Link to ="/profile">PROFILE</Link></li>
         </ul>
       </nav>
@@ -80,8 +85,8 @@ function Profile() {
         <aside>
           <img src={userImg} alt="User" />
           <ul>
-            <li><a href="#">Profile Settings</a></li>
-            <li><a href="#">My Bookings</a></li>
+            <li><a href="/profile-settings">Profile Settings</a></li>
+            <li><a href="/my-bookings">My Bookings</a></li>
             <li><button onClick={handleLogout} className="logout-button">Logout</button></li>
           </ul>
        
@@ -92,7 +97,6 @@ function Profile() {
             <li>Full Name: {user?.fullname}</li>
             <li>Username: {user?.username}</li>
             <li>Email Address: {user?.email}</li>
-            <li>Member Since: {user?.created_at?.slice(0, 10)}</li>
           </ul> </div>
         </section>
        </aside>

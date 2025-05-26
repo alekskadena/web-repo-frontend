@@ -3,3 +3,11 @@
     color: rgba(12, 12, 135, 0.842);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+.wrapper {
+  background: transparent;
+  padding: 30px 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  backdrop-filter: blur(30px);
+  color: #fff;
+  border-radius: 15px;
+}
