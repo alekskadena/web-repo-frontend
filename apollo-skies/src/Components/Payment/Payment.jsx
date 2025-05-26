@@ -1,9 +1,8 @@
-// Payment.jsx
+
 import React, { useState } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useNavigate } from "react-router-dom";
-import './Payment.css'; // Make sure to import the CSS
-
+import './Payment.css'; 
 function Payment() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

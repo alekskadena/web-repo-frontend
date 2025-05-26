@@ -11,7 +11,6 @@ function Profile() {
   console.log(user)
 
   useEffect(() => {
-    // Fetch data from profile.php
     fetch("http://localhost/web-repo-backend/profile.php", {
       method:'GET',
       credentials: "include" ,
@@ -63,7 +62,6 @@ console.log("user -" + user)
   if (!user) {
     return <div>Loading...</div>; // Nxjerr nje msg te perdoruesi qe te presi derisa te behet fetch in case do ket vones
   }
-  //const username = localStorage.getItem("username");
 
 
   return (

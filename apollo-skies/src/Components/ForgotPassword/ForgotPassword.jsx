@@ -11,7 +11,6 @@ function ForgotPassword() {
     setLoading(true);
 
     try {
-      // Dërgo email-in për të kërkuar resetimin e fjalëkalimit
       const response = await fetch('http://localhost/web-repo-backend/forgotpassword.php', {
         method: 'POST',
         headers: {

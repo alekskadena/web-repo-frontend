@@ -28,7 +28,7 @@ const Home = () => {
                     <li><Link to="/home">HOME</Link></li>
                     <li><Link to ="/mainpage">SEARCH</Link></li>
                     <li><Link to ="/aboutus">ABOUT US</Link></li>
-                    <li><Link to ="/login">PROFILE</Link></li>
+                    <li><Link to ="/profile">PROFILE</Link></li>
                 </ul>
             </nav>
             </header>

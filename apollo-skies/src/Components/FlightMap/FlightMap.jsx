@@ -2,7 +2,6 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker, Polyline, Popup } from 'react-leaflet';
 
 const FlightMap = ({ from, to }) => {
-  // from dhe to janë objekte me lat dhe lng, p.sh. { lat: 41.3275, lng: 19.8189 }
   const positions = [
     [from.lat, from.lng],
     [to.lat, to.lng],

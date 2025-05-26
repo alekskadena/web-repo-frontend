@@ -29,26 +29,21 @@ function LoginForm() {
       });
 
       const result = await response.json();
-
       if (result.status === 'success') {
-        // ✅ Ruaj të dhënat në localStorage
         localStorage.setItem("isLoggedIn", "true");
-        //localStorage.setItem("username", result.username); // nga backend
         localStorage.setItem("username", credentials.identifier);
         localStorage.setItem("role", result.role);
-
         console.log("mesa-" + result.status)
         console.log("mesa-" + result.redirect)
       
+       if (result.redirect === "admin.jsx") {
+  navigate("/admin");
+} else if (result.redirect === "/profile") {
+  navigate("/profile");
+} else {
+  navigate(result.redirect);
+}
 
-        // ✅ Redirect sipas rolit ose URL-së
-        if (result.redirect === "admin.jsx") {
-          navigate("/admin");
-        } else if (result.redirect === "/profile") {
-          navigate("/profile");
-          window.location.reload();
-        } 
-          navigate(result.redirect);
         }else{
           alert(result.message);
         }
