@@ -2,7 +2,7 @@
   font-family: "Outfit", sans-serif;
 }
 
-.navbar {
+.navbar-au {
   width: 100%;
   position: fixed; 
   top: 0;
@@ -17,24 +17,24 @@
   border-bottom: 3px solid rgb(222, 222, 222);
 }
 
-.navname {
+.navname-au {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.navname img {
+.navname-au img {
   width: 40px;
   height: 40px;
   object-fit: contain;
 }
 
-.navname h3 {
+.navname-au h3 {
   font-size: 1.5rem;
   color: #fff;
 }
 
-.navbar ul {
+.navbar-au ul {
   display: flex;
   gap: 2rem;
   list-style: none;
@@ -42,13 +42,13 @@
   padding: 0;
 }
 
-.navbar ul li a {
+.navbar-au ul li a {
   text-decoration: none;
   color: #fff;
   transition: color 0.3s ease;
 }
 
-.navbar ul li a:hover {
+.navbar-au ul li a:hover {
   color: #f3c623;
 }
 
@@ -70,4 +70,9 @@
   backdrop-filter: blur(8px); 
   -webkit-backdrop-filter: blur(8px); 
   border-radius: 12px;
+  color: white;
+}
+
+.about-content h1, h2{
+  color: #10375c;
 }

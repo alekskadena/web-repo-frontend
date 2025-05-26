@@ -74,7 +74,7 @@ function ProfileSettings() {
 export default ProfileSettings;*/
 
 
-
+import './ProfileSettings.css';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -87,11 +87,11 @@ function ProfileSettings() {
     fetch("http://localhost/web-repo-backend/profile.php", {
       credentials: "include"
     })
-    .then(res => res.json())
-    .then(data => {
-      setUsername(data.username);
-    })
-    .catch(() => setMessage("Failed to load profile data."));
+      .then(res => res.json())
+      .then(data => {
+        setUsername(data.username);
+      })
+      .catch(() => setMessage("Failed to load profile data."));
   }, []);
 
   const handleUpdate = () => {
@@ -103,30 +103,37 @@ function ProfileSettings() {
       },
       body: JSON.stringify({ username })
     })
-    .then(res => res.json())
-    .then(data => {
-      if (data.status === "success") {
-        alert("Username updated successfully!");
-        navigate("/profile");  // redirect SPA style
-      } else if (data.message && data.message.toLowerCase().includes("duplicate")) {
-        setMessage("This username already exist.");
-      } else {
-        setMessage("Failed to update username.");
-      }
-    })
-    .catch(() => setMessage("Network error while updating username."));
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === "success") {
+          alert("Username updated successfully!");
+          navigate("/profile");
+        } else if (data.message && data.message.toLowerCase().includes("duplicate")) {
+          setMessage("This username already exists.");
+        } else {
+          setMessage("Failed to update username.");
+        }
+      })
+      .catch(() => setMessage("Network error while updating username."));
   };
 
   return (
-    <div>
-      <h2>Profile Settings</h2>
+    <div className="profile-settings-container">
+      <h2 className="profile-settings-title">Profile Settings</h2>
+
       <input
         type="text"
         value={username}
         onChange={e => setUsername(e.target.value)}
+        placeholder="Enter new username"
+        className="profile-settings-input"
       />
-      <button onClick={handleUpdate}>Update Username</button>
-      <p style={{ color: 'red' }}>{message}</p>
+
+      <button onClick={handleUpdate} className="profile-settings-button">
+        Update Username
+      </button>
+
+      {message && <p className="profile-settings-message">{message}</p>}
     </div>
   );
 }

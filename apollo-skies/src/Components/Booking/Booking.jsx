@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Polyline, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import './Booking.css';
 
 function Booking() {
   const { flightId } = useParams();
@@ -19,7 +20,6 @@ function Booking() {
       return;
     }
 
-    // Fetch flight details
     fetch(`http://localhost/web-repo-backend/get_flights_details.php?id=${flightId}`, {
       credentials: 'include',
     })
@@ -54,41 +54,29 @@ function Booking() {
     navigate('/payment', { state: { flight } });
   };
 
-  if (loading) return <p>Loading flight details...</p>;
-  if (error) return <p style={{ color: 'red' }}>Error: {error}</p>;
-  if (!flight) return <p>No flight data found.</p>;
+  if (loading) return <p className="booking-loading">Loading flight details...</p>;
+  if (error) return <p className="booking-error">Error: {error}</p>;
+  if (!flight) return <p className="booking-empty">No flight data found.</p>;
 
   return (
-    <div style={{ padding: "2rem", fontFamily: "Arial, sans-serif" }}>
-      <h2>Booking for Flight #{flight.flight_code}</h2>
-      <p><strong>From:</strong> {flight.from_location}</p>
-      <p><strong>To:</strong> {flight.to_location}</p>
-      <p><strong>Date:</strong> {flight.date}</p>
-      <p><strong>Departure Time:</strong> {flight.departure}</p>
-      <p><strong>Arrival Time:</strong> {flight.arrival}</p>
+    <div className="booking-container">
+      <h2 className="booking-title">Booking for Flight #{flight.flight_code}</h2>
+      <div className="booking-details">
+        <p><strong>From:</strong> {flight.from_location}</p>
+        <p><strong>To:</strong> {flight.to_location}</p>
+        <p><strong>Date:</strong> {flight.date}</p>
+        <p><strong>Departure Time:</strong> {flight.departure}</p>
+        <p><strong>Arrival Time:</strong> {flight.arrival}</p>
+      </div>
 
-      <button
-        onClick={handlePayment}
-        style={{
-          marginTop: "20px",
-          padding: "10px 20px",
-          backgroundColor: "#007bff",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }}
-      >
+      <button className="booking-button" onClick={handlePayment}>
         Proceed to Payment
       </button>
 
       {mapData && (
-        <div style={{ height: '400px', marginTop: '20px' }}>
+        <div className="booking-map">
           <MapContainer
-            center={[
-              parseFloat(mapData.from_lat),
-              parseFloat(mapData.from_lng),
-            ]}
+            center={[parseFloat(mapData.from_lat), parseFloat(mapData.from_lng)]}
             zoom={5}
             style={{ height: '100%', width: '100%' }}
           >
@@ -103,10 +91,7 @@ function Booking() {
               <Popup>To: {flight.to_location}</Popup>
             </Marker>
             <Polyline
-              positions={[
-                [mapData.from_lat, mapData.from_lng],
-                [mapData.to_lat, mapData.to_lng],
-              ]}
+              positions={[[mapData.from_lat, mapData.from_lng], [mapData.to_lat, mapData.to_lng]]}
               color="blue"
             />
           </MapContainer>

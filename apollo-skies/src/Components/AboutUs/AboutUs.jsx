@@ -7,10 +7,10 @@ const AboutUs = () => {
   return (
     <div className="about-page">
       <header>
-        <nav className="navbar">
-          <div className="navname">
+        <nav className="navbar-au">
+          <div className="navname-au">
             <img src={logo} alt="Logo" />
-            <h3 className="headers">Apollo Skies</h3>
+            <h3 className="headers-au">Apollo Skies</h3>
           </div>
           <ul>
             <li><Link to="/home">HOME</Link></li>

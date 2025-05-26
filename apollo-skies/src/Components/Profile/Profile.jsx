@@ -81,8 +81,8 @@ console.log("user -" + user)
           <li><Link to ="/profile">PROFILE</Link></li>
         </ul>
       </nav>
-      <main>
-        <aside>
+      <main className='profile-main'>
+        <aside className='profile-aside'>
           <img src={userImg} alt="User" />
           <ul>
             <li><a href="/profile-settings">Profile Settings</a></li>
@@ -90,7 +90,7 @@ console.log("user -" + user)
             <li><button onClick={handleLogout} className="logout-button">Logout</button></li>
           </ul>
        
-        <section>
+        <section className='profile-section'>
           <div>
           <h1>About</h1>
           <ul>

@@ -96,18 +96,25 @@
     overflow: hidden;
   }
 
-  .slogan-section button{
+  .home-button{
     background-color: #10375c;
     color: white;
     width: 70vw;
     cursor: pointer;
     align-self: center;
+    border-radius: 1rem;
     padding: 1rem 2rem;
     margin-top: 3rem;
     margin-bottom: 3rem;
   }
 
-  .slogan-section button:hover{
+  .home-button a{
+    text-decoration: none;
+    color: white;
+    font-size: large;
+  }
+
+  .home-button:hover{
     background-color: #f3c623;
   }
 
