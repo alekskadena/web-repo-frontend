@@ -37,9 +37,9 @@ const Home = () => {
             <div className='slogan-section'>
                 <h1>FLY WITH THE GODS</h1>
                 <p>Apollo-Skies is a dynamic and customer-focused airline that offers affordable and reliable air travel services to a wide range of destinations. With a commitment to comfort, safety, and on-time performance, Apollo-Skies aims to make flying accessible and enjoyable for all passengers. Whether you're traveling for business or leisure, our fleet of modern aircraft and exceptional service ensure a seamless and pleasant journey from start to finish. Fly with Apollo-Skies and experience the sky like never before.</p>
- <button className='home-button'>
-  <Link to="/mainpage">SEARCH FLIGHTS</Link>
-</button>
+                <button className='home-button'>
+                <Link to="/mainpage">SEARCH FLIGHTS</Link>
+                </button>
             </div>
             <div className='cards-section'>
                 <div className='cards-section2'>

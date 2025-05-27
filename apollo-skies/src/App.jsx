@@ -13,6 +13,7 @@ import Admin from './Components/Profile/admin'
 import Dashboard from './Components/Profile/Dashboard'
 import MainPageForm from './Components/Main Page/MainPageForm'
 import Booking from './Components/Booking/Booking'
+import MyBookings from './Components/MyBookings/MyBookings';
 import Home from './Components/Home/Home'
 import AboutUs from './Components/AboutUs/AboutUs'
 import Payment from './Components/Payment/Payment'
@@ -37,6 +38,7 @@ function App() {
       <Route path="/admin" element={<Admin />} />
       <Route path="/mainpage" element={<MainPageForm />} />
       <Route path="/booking" element={<Booking />} />
+      <Route path="/mybookings" element={<MyBookings />} />
       <Route path="/home" element={<Home />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/aboutus" element={<AboutUs />} />

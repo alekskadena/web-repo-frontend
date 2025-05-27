@@ -84,7 +84,7 @@ console.log("user -" + user)
           <img src={userImg} alt="User" />
           <ul>
             <li><a href="/profile-settings">Profile Settings</a></li>
-            <li><a href="/my-bookings">My Bookings</a></li>
+            <li><a href="/mybookings">My Bookings</a></li>
             <li><button onClick={handleLogout} className="logout-button">Logout</button></li>
           </ul>
        

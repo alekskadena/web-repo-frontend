@@ -38,7 +38,7 @@ function RegisterForm() {
       if (result.status === "success") {
         alert("Sign up successful! Redirecting to login...");
         if (result.role === 2){
-          navigate("/admin"); 
+          navigate("/login"); 
         } else {
           navigate("/login"); 
         }
